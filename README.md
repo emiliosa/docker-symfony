@@ -1,7 +1,7 @@
 Docker for Symfony proyects
 ===========================
 
-Inclues:
+Includes:
 
     .Symfony4 (with Flex)
     .Sqlite3
@@ -31,7 +31,7 @@ Rebuild images
 $ docker-compose build
 ```
 
-# Usge
+# Usage
 
 Access inside container (you can execute `composer` or `php bin/console` commands):
 ```bash
