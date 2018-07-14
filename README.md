@@ -15,7 +15,7 @@ Includes:
 First, clone this repository:
 
 ```bash
-$ git clone https://github.com/emiliosa/docker-symfony-sqlite-nginx-nodejs-elk.git
+$ git clone https://github.com/emiliosa/docker-symfony.git
 ```
 
 1. Symfony app into `mediamonks-demo` folder.
@@ -30,6 +30,8 @@ Rebuild images
 ```bash
 $ docker-compose build
 ```
+
+Now, follow `mediamonks-demo` Readme.
 
 # Usage
 
