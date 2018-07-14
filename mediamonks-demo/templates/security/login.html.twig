@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_id 'login' %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey }}
+        </div>
+    {% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+
+                    <form class="form-horizontal" role="form"action="{{ path('security_login') }}" method="post">
+
+                        <div class="form-group">
+                            <label for="username" class="col-md-4 control-label">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" id="username" name="_username" value="eabarca" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" name="_password" value="eabarca" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+                        <div class="form-group margin-bottom-3">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i> login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ path('connect_google') }}" >
+                                    Connect with Google
+                                </a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

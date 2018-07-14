@@ -1,0 +1,13 @@
+sonata_admin:
+    title: 'MediaMonks-Demo Admin'
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: center }
+    templates:
+        add_block: 'bundles/SonataAdmin/Core/user_block.html.twig'
+        layout: 'bundles/SonataAdmin/standard_layout.html.twig'
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

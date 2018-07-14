@@ -1,0 +1,49 @@
+version: '2'
+services:
+    sqlite3:
+        image: nouchka/sqlite3:latest
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./db/:/root/db/
+    php:
+        build: ./php-fpm
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./mediamonks-demo:/var/www/mediamonks-demo:cached
+            - ./logs/mediamonks-demo:/var/www/mediamonks-demo/var/logs:cached
+        working_dir: /var/www/mediamonks-demo
+        links:
+            - sqlite3
+    nginx:
+        build: ./nginx
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx:cached
+    nodejs:
+        image: node:alpine
+        user: "node"
+        tty: true
+        links:
+            - php
+        volumes:
+            - ./mediamonks-demo:/var/www/mediamonks-demo
+        volumes_from:
+            - php
+        working_dir: /var/www/mediamonks-demo
+    elk:
+        image: willdurand/elk
+        ports:
+            - "81:80"
+        volumes:
+            - ./elk/logstash:/etc/logstash:cached
+            - ./elk/logstash/patterns:/opt/logstash/patterns:cached
+        volumes_from:
+            - php
+            - nginx

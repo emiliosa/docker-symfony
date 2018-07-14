@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+
+    <div class="form-group">
+        <label class="control-label required" for="post_title">Title</label>
+        {{ form_widget(form.title) }}
+    </div>
+
+    <div class="form-group">
+        <label class="control-label required" for="post_body">Body</label>
+        {{ form_widget(form.body) }}
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="post_tags">Tags</label>
+        {{ form_widget(form.tags) }}
+    </div>
+
+    <a class="btn btn-default" href="{{ path('post_index') }}">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back to index
+    </a>
+
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-save" aria-hidden="true"></i>
+        {{ button_label|default('Save') }}
+    </button>
+
+{{ form_end(form) }}

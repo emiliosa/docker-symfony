@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a href="{{ path('post_index') }}">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Blog
+        </a>
+    </li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{ path('sonata_admin_redirect') }}">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                Admin area
+            </a>
+        </li>
+    {% endif %}
+    <li>
+        <a href="{{ path('security_logout') }}">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            Logout
+        </a>
+    </li>
+</ul>

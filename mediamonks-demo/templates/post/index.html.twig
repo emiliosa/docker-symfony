@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+    {% for post in posts %}
+        <article class="post">
+            <h2>
+                <a href="{{ path('post_show', {slug: post.slug}) }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+
+            <p class="post-metadata">
+                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.createdAt|date }}</span>
+                <span class="metadata"><i class="fa fa-user"></i> {{ post.user.fullName }}</span>
+            </p>
+
+            {{ include('post/tags.html.twig') }}
+        </article>
+    {% else %}
+        <div class="well">No post found</div>
+    {% endfor %}
+
+    <a class="btn btn-success" href="{{ path('post_new') }}">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+        Create new post
+    </a>
+
+{% endblock %}

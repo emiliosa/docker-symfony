@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Repository;
+
+use App\Entity\User;
+use App\Entity\Tag;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
+
+/**
+ * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tag[]    findAll()
+ * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class TagRepository extends EntityRepository
+{
+    /**
+     * Find new tags, insert on DB and return an array of tags
+     *
+     * @param  array $tags tags to find
+     * @param  User $user user that creates new tags
+     * @return array|Tag $tagsNew
+     */
+    public function createNewTags($tagsParam, User $user)
+    {
+        $tagsArray = [];
+        $tagsNew = [];
+        $em = $this->getEntityManager();
+
+        // find Tags by id
+        $tags = $em->getRepository(Tag::class)->findBy([
+            'id' => $tagsParam
+        ]);
+
+        // Tags array to id array
+        foreach ($tags as $tag) {
+            $tagsArray[] = $tag->getId();
+        }
+
+        $newNames = array_diff($tagsParam, $tagsArray);
+
+        //dd($tagsParam, $tags, $newNames);
+
+        // new Tags
+        foreach ($newNames as $name) {
+            //$tag = $em->getRepository(Tag::class)->findOneBy(['name' => $value]);
+            //if (null === $tag || empty($tag)) {
+                $tag = new Tag();
+                $tag->setName($name);
+                $tag->setUser($user);
+
+                $em->persist($tag);
+                $em->flush();
+
+                $tagsNew[] = $tag;
+            //}
+            //$tagsProcessed[] = $tag;
+        }
+
+        //die('new: ' . count($tagsNew) . ', salí: ' . count($tagsProcessed));
+
+        return $tagsNew;
+    }
+
+//    /**
+//     * @return Tag[] Returns an array of Tag objects
+//     */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Tag
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
+}

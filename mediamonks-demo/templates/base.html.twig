@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('build/css/select2.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    </head>
+    <body>
+
+        {% block header %}
+            <header>
+                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header col-md-3 col-lg-3">
+                            <a class="navbar-brand" href="{{ path('login') }}">
+                                MediaMonks demo
+                            </a>
+                        </div>
+                        {% if app.user %}
+                            <div class="navbar-collapse collapse">
+                                {% block header_navigation_links %}
+                                    {{ include('layout/_header_navigation_links.html.twig') }}
+                                {% endblock %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </header>
+        {% endblock %}
+
+        <div class="container body-container">
+            <div class="row">
+                {% block flash_message %}
+                    {{ include('layout/_flash_message.html.twig') }}
+                {% endblock %}
+            </div>
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div id="footer-copyright" class="col-md-6">
+                            <a href="https://github.com/emiliosa" target="_blank">&copy;
+                                {{ 'now'|date('Y') }}
+                                - emiliosa</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+
+    </body>
+</html>
