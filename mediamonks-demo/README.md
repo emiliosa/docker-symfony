@@ -14,19 +14,7 @@ Execute this command to install dependencies:
 ```bash
 $ composer install
 $ php bin/console doctrine:database:create
-$ php bin/console doctrine:schema:update --force
 $ php bin/console doctrine:fixtures:load
-$ php bin/console assets:install
-$ sudo chmod -R 777 var/
-```
-
-# Webpack
-
-Using docker execute:
-
-```bash
-$ docker exec -it dockersymfony_nodejs_1 yarn install
-$ docker exec -it dockersymfony_nodejs_1 yarn run encore dev
 ```
 
 # Configuration
@@ -41,8 +29,8 @@ $ cp .env.dist .env
 
 <https://console.developers.google.com/apis/>
 
-Browser request: `http://localhost.mediamonks-demo.com`
-URI Redirect: `http://localhost.mediamonks-demo.com/connect/google/check`
+`Broser request: http://localhost.mediamonks-demo.com`
+`URI Redirect: http://localhost.mediamonks-demo.com/connect/google/check`
 
 3. Add google `CLIENTE_ID` and `CLIENT_SECRET` on `.env` file
 
