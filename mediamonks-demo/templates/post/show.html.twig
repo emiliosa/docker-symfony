@@ -4,43 +4,50 @@
 
 {% block body %}
 
-    <h1>{{ post.title }}</h1>
+    {% block post %}
+        <h1>{{ post.title }}</h1>
 
-    <p class="post-metadata">
-        <span class="metadata">
-            <i class="fa fa-calendar"></i>
-            {{ post.createdAt|date('Y-m-d H:i:s') }}</span>
-    </p>
+        <p class="post-metadata">
+            <span class="metadata">
+                <i class="fa fa-calendar"></i>
+                {{ post.createdAt|date('Y-m-d H:i:s') }}</span>
+        </p>
+        {{ post.body|md2html }}
+    {% endblock post %}
 
-    {{ post.body|md2html }}
+    {% block post_tags %}
+        {{ include('post/tags.html.twig') }}
+    {% endblock %}
 
-    {{ include('post/tags.html.twig') }}
-
-    <div id="post-add-comment" class="well">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {{ render(controller('App\\Controller\\BlogController::commentForm', {'id': post.id})) }}
-        {% endif %}
-    </div>
-
-    <h3>
-        <i class="fa fa-comments" aria-hidden="true"></i>
-        {{ post.comments|length }}
-        comments
-    </h3>
-
-    {% for comment in post.comments %}
-        <div class="row post-comment">
-            <a name="comment_{{ comment.id }}"></a>
-            <h4 class="col-sm-3">
-                <strong>{{ comment.user.fullName }}
-                    on
-                    {{ comment.createdAt|date }}</strong>
-            </h4>
-            <div class="col-sm-9">
-                {{ comment.content|md2html }}
-            </div>
+    {% block post_new_comment %}
+        <div id="post-add-comment" class="well">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {{ render(controller('App\\Controller\\BlogController::commentForm', {'id': post.id})) }}
+            {% endif %}
         </div>
-    {% endfor %}
+
+        <h3>
+            <i class="fa fa-comments" aria-hidden="true"></i>
+            {{ post.comments|length }}
+            comments
+        </h3>
+    {% endblock %}
+
+    {% block post_comments %}
+        {% for comment in post.comments %}
+            <div class="row post-comment">
+                <a name="comment_{{ comment.id }}"></a>
+                <h4 class="col-sm-3">
+                    <strong>{{ comment.user.fullName }}
+                        on
+                        {{ comment.createdAt|date }}</strong>
+                </h4>
+                <div class="col-sm-9">
+                    {{ comment.content|md2html }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
 
     {% block user_actions %}
         <div class="row">

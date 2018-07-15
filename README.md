@@ -56,4 +56,4 @@ You can access Nginx and Symfony application logs in the following directories o
 
 # Use Kibana
 
-You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://localhost.mediamonks-demo.com:81`.
+You can also use Kibana to visualize Nginx & Symfony logs by visiting <http://localhost.mediamonks-demo.com:81>

@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * @ORM\Table(name="comment")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Comment extends EntityBase implements \JsonSerializable
 {

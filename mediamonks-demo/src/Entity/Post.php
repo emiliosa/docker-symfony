@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
+use App\Utils\Slugger;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Utils\Slugger;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\Table(name="post")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Post extends EntityBase implements \JsonSerializable
 {

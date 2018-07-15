@@ -62,7 +62,7 @@ class BlogController extends AbstractController
     {
         $form = $this->createForm(CommentType::class);
 
-        return $this->render('post/_comment_form.html.twig', [
+        return $this->render('post/comment_form.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -91,7 +91,7 @@ class BlogController extends AbstractController
             );
         }
 
-        return $this->render('post/comment_form_error.html.twig', [
+        return $this->render('post/comment_form.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);

@@ -41,11 +41,11 @@ $ cp .env.dist .env
 
 <https://console.developers.google.com/apis/>
 
-Browser request: `http://localhost.mediamonks-demo.com`
-URI Redirect: `http://localhost.mediamonks-demo.com/connect/google/check` 
+* Browser request: `http://localhost.mediamonks-demo.com`
+* URI Redirect: `http://localhost.mediamonks-demo.com/connect/google/check`
 
 3. Add google `CLIENTE_ID` and `CLIENT_SECRET` on `.env` file
 
 # Usage
 
-Access the application in your browser at <http://localhost.mediamonks-demo.com>:
+Access the application in your browser at <http://localhost.mediamonks-demo.com>
