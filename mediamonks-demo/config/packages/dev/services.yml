@@ -1,0 +1,5 @@
+parameters:
+    app.admin.username: 'foo_admin'
+    app.admin.password: 'foo_admin'
+    app.test.username: 'foo_test'
+    app.test.password: 'foo_test'
