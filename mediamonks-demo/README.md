@@ -48,4 +48,14 @@ $ cp .env.dist .env
 
 # Usage
 
+Users to login:
+
+`username: foo_admin`
+`password: foo_admin`
+`role: ROLE_ADMIN`
+
+`username: foo_test`
+`password: foo_test`
+`role: ROLE_USER`
+
 Access the application in your browser at <http://localhost.mediamonks-demo.com>

@@ -14,12 +14,17 @@
         <env name="APP_DEBUG" value="1" />
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
         <!-- define your env variables for the test env here -->
 
-        <!-- ###+ hwi/oauth-bundle ### -->
-        <env name="FB_ID" value=""/>
-        <env name="FB_SECRET" value=""/>
-        <!-- ###- hwi/oauth-bundle ### -->
+        <!-- ###+ doctrine/doctrine-bundle ### -->
+        <env name="DATABASE_URL" value="sqlite:///var/data/mediamonks.sqlite"/>
+        <!-- ###- doctrine/doctrine-bundle ### -->
+
+        <!-- ###+ knpuniversity/oauth2-client-bundle ### -->
+        <env name="CLIENT_ID" value=""/>
+        <env name="CLIENT_SECRET" value=""/>
+        <!-- ###- knpuniversity/oauth2-client-bundle ### -->
     </php>
 
     <testsuites>

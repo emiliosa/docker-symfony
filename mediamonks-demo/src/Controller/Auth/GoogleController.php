@@ -16,7 +16,7 @@ class GoogleController extends Controller
     /**
      * Link to this controller to start the "connect" process
      *
-     * @Route("/", name="connect_google")
+     * @Route("", name="connect_google")
      */
     public function connectAction()
     {

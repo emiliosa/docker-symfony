@@ -19,7 +19,7 @@ use Symfony\Component\Form\AbstractType;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="api_blog_index", methods="GET")
+     * @Route("", name="api_blog_index", methods="GET")
      */
     public function index()
     {

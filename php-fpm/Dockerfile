@@ -34,6 +34,9 @@ RUN apk update && apk add ca-certificates && update-ca-certificates && apk add o
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer self-update && composer --version && composer config --global repo.packagist composer https://packagist.org
+RUN wget https://phar.phpunit.de/phpunit-6.1.phar && \
+    chmod +x phpunit-6.1.phar && \
+    mv phpunit-6.1.phar /usr/local/bin/phpunit
 RUN export TZ='America/Argentina/Buenos_Aires'
 
 ADD php.ini /etc/php7/php-fpm.d/

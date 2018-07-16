@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/", name="post_index", methods="GET")
+     * @Route("", name="post_index", methods="GET")
      */
     public function index(PostRepository $post): Response
     {
